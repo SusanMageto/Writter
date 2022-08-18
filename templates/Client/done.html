@@ -116,15 +116,15 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <h5 class="card-title m-b-0">Done Task</h5>
-                                </div>
+                                    <h5 class="card-title m-b-0"> Task Status</h5>
+                               
                                     <div class="table-responsive">
                                         <table class="table">
                                             <thead class="thead-light">
                                                 <tr>
                                                   
                                                     <th scope="col">Task Id</th>
-                                                    <th scope="col">icon</th>
+                                                    <th scope="col">Icon</th>
                                                     <th scope="col">Task Title</th>
                                                     <th scope="col">Task Status</th>
                                                     <th scope="col">Task File</th>
@@ -137,20 +137,33 @@
                                                
 
                                                 {% for task in tasks %}
-                                                {% if task.status == "In Progress" %}
+                                               
                                                 <tr>
                                                     <td>{{task.id}}</td>
-                                                    <td class="text-info"><i class="fas fa-check"></i></td>
+                                                    {% if task.status == "In Progress" %}
+                                                    <td class="text-info"><i class="fas fa-spinner"></i></td>
+                                                    {% elif task.status == "Pending" %}
+
+                                                    <td class="text-warning"><i class="fas fa-pause-circle"></i></td>
+                                                    {% elif task.status == "Cancelled" %}
+                                                    <td class="text-danger"><i class="fas fa-plane-slash"></i></td>
+                                                    {% elif task.status == "Completed" %}
+                                                    <td class="text-success"><i class="fas fa-check"></i></td>
+                                                    {% else %}
+
+
+
+
+                             
+                                                    {% endif %}
+                                                    
                                                     <td>{{task.title}}</td>
+                                                    
                                                     <td>{{task.status}}</td>
                                                     <td><a href="{{task.file.url}}">{{task.file}}</a></td>
                                                    
                                                 </tr>
-                                                {% else %}
-
-
-                             
-                                                {% endif %}
+                                                
 
 
                                                 {% endfor %}
@@ -165,6 +178,7 @@
                                             </tbody>
                                         </table>
                                     </div>
+                            </div>
                             </div>
                         </div>
                     </div>
