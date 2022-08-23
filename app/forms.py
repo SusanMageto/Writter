@@ -89,7 +89,7 @@ class AddTasks(forms.Form):
             }
         )
     )
-    file = forms.FileField(blank=True, null=True,required=False,
+    file = forms.FileField(
         widget=forms.FileInput(
             attrs={
                 'class': 'form-control',
