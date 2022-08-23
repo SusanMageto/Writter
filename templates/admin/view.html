@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin | All Task</title>
+    <title>Admin | View</title>
 
     <!-- fonts -->
 
@@ -43,15 +43,14 @@
             <div class="list-group list-group-flush my-3">
                 <a href="#" class="list-group-item list-group-item-action bg-transparent second-text active"><i
                         class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
-                <a href="{% url 'alltasks'%}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                        class="fas fa-project-diagram me-2"></i>All Jobs</a>
-        
+                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                        class="fas fa-project-diagram me-2"></i>Available Jobs</a>
                 
-                <a href="{% url 'all_writter'%}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
-                    <i class="fa-solid fa-keyboard me-2"></i>Writters</a>
+                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+                    <i class="fa-solid fa-keyboard me-2"></i>Done Jobs</a>
               
-                <a href="{% url 'all_client'%}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
-                    <i class="fa-solid fa-face-grin-tongue-wink me-2" ></i>Clients</a>
+                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+                    <i class="fa-solid fa-face-grin-tongue-wink me-2" ></i>My Receipts</a>
               
                 <a href="{% url 'logout' %}" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
                         class="fas fa-power-off me-2"></i>Logout</a>
@@ -64,7 +63,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
                 <div class="d-flex align-items-center">
                     <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-                    <h2 class="fs-2 m-0"><span class="admin">Admin</span> Dashboard</h2>
+                    <h2 class="fs-2 m-0"><span class="client">Admin</span> Dashboard</h2>
                 </div>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -106,57 +105,53 @@
                     </div>
                 </div>
 
-             
                 
-                    <div class="container">
-                      
+                <div class="row g-3 my-2">
+                <div class="col-md-12">
+                    <div class="card">
+                        <!-- job details -->
+                        <div class="card-body">
+                            <h2>Task Details</h2>
+                            <h3 class="card-title">{{tasks.title}}</h3>
+                            <p class="card-text">{{tasks.description}}</p>
+                            <p class="card-text">{{tasks.admin_amount}}</p>
+                            <div class="mt-2">
                                 
-                       
-                            <div class="row my-5">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title m-b-0">ALL Task</h5>
+                            
+
+                            <h3><i class="fas fa-download"></i> Download Files</h3>
+                            <h4>{{tasks.file}}</h4>
+
+                            <p class="mt-2"> <a class="text-info" href="{{ tasks.file.url}}">   <i class="fas fa-file-alt fa-3x"></i></a></p>
+                            <h3>Update Jobs</h3>
+
+                            <form method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="">Task Status</label>
+                                    {{ form.status }}
                                 </div>
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <thead class="thead-light">
-                                                <tr>
-                                                  
-                                                    <th scope="col">Task Id</th>
-                                                    <th scope="col">Task Title</th>
-                                                    <th scope="col">Pay amount</th>
-                                                    <th scope="col">Due on </th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">View</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody class="customtable">
-                                             
-                                                {% for task in tasks %}
-                                                <tr>
-                                                    <td>{{task.id}}</td>
-                                                    <td>{{task.title}}</td>
-                                                    <td>{{task.client_amount}}</td>
-                                                    <td>{{task.due_date}}</td>
-                                                    <td>{{task.status }}</td>
-                                                    <td><button class="btn btn-block btn-outline-danger">
-                                                        <a href="{% url 'admin_view' task.id %}"> <i class="fas fa-eye"></i></a>
-                                                        <i class="fas fa-eye"></i>
-                                                    </button></td>
-                                                </tr>
-                                                {% endfor %}
-                                                
-                                                
-                                                
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="task_name">Task file</label>
+                                    {{ form.file }}
+                                </div>
+
+
+                                <button class="btn btn-outline-info">Submit</button>
+
+                            </form>
+                           
+
                             </div>
                         </div>
                     </div>
-    
-                       </div> 
+                </div>
+
+                    
+                </div>
+
+                
+               
                     
                 </div>
 

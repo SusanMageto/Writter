@@ -15,6 +15,7 @@ urlpatterns = [
     path('admin/alltasks/', views.all_task, name='alltasks'),
     path('admin/all-client/', views.all_client, name='all_client'),
     path('admin/all-writter/', views.all_writter, name='all_writter'),
+    path('admin/view/<int:id>', views.admin_view, name='admin_view'),
     path('client/', views.client, name='client'),
     
     path('client/addtask/', views.addtasks, name='addtasks'),
