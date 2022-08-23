@@ -128,10 +128,11 @@
                                                     <th scope="col">Client Id</th>
                                                     <th scope="col">Client Name</th>
                                                     <th scope="col">Client Email</th>
+                                                    <th scope="col">Status</th>
                                                 
                                                 </tr>
                                             </thead>
-                                            <tbody class="customtable">
+                                            <tbody class="">
                                               
                                                 {% for u in users %}
 
@@ -140,6 +141,7 @@
                                                     <td>{{forloop.counter}}</td>
                                                     <td>{{u.username}}</td>
                                                     <td>{{u.email}}</td>
+                                                    <td> <span class="badge badge-info">Aproved</span></td>
                                                     
                                                 </tr>
                                                 
