@@ -27,7 +27,7 @@ class Task(models.Model):
 
     title = models.CharField(max_length=100,default='',null=True,blank=True)
     description = models.TextField(default='',null=True,blank=True)
-    file = models.FileField(upload_to='files/',default='',null=True)
+    file = models.FileField(upload_to='files/',default='',null=True,blank=True)
     client_amount = models.IntegerField(default=0,null=True,blank=True)
     admin_amount = models.IntegerField(default=0,   null=True,blank=True)
     due_date = models.DateField(default='',null=True,blank=True)
