@@ -160,7 +160,13 @@
                                                     <td>{{task.title}}</td>
                                                     
                                                     <td>{{task.status}}</td>
+                                                    {% if task.file %}
                                                     <td><a href="{{task.file.url}}">{{task.file}}</a></td>
+                                                    {% else %}
+                                                    <td>No file</td>
+                                                    
+                                                    {% endif %}
+                                                    
                                                    
                                                 </tr>
                                                 
