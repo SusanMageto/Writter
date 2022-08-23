@@ -211,6 +211,18 @@ def writter_view(request,id):
 
     return render(request,'writter/view.html',context)
 
+
+def admin_view(request,id):
+    tasks = Task.objects.get(id=id)
+
+    
+
+    context = {
+        'tasks':tasks
+    }
+
+    return render(request,'admin/view.html',context)
+
 def done_task(request):
     tasks = Task.objects.all()
 

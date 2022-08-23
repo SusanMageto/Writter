@@ -140,7 +140,10 @@
                                                     <td>{{task.client_amount}}</td>
                                                     <td>{{task.due_date}}</td>
                                                     <td>{{task.status }}</td>
-                                                    <td><button class="btn btn-block btn-outline-danger"><i class="fas fa-eye"></i></button></td>
+                                                    <td><button class="btn btn-block btn-outline-danger">
+                                                        <a href="{% url 'view' task.id %}"> <i class="fas fa-eye"></i></a>
+                                                        <i class="fas fa-eye"></i>
+                                                    </button></td>
                                                 </tr>
                                                 {% endfor %}
                                                 
