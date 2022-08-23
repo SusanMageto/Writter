@@ -8,6 +8,7 @@ class User(AbstractUser):
     is_admin = models.BooleanField('Is admin',default=False)
     is_client = models.BooleanField('Is Client',default=False)
     is_writter = models.BooleanField('Is Writter',default=False)
+    is_verified = models.BooleanField('Is Verified',default=False)
 
 
 
