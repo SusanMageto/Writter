@@ -17,7 +17,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,301,300,400&display=swap" rel="stylesheet">
    
 
     <!-- bs5 -->
@@ -142,13 +142,17 @@
                            
                             
                           
-                            <h3>Update Jobs</h3>
+                            <h3>Updateee Jobs</h3>
 
                             <form method="POST" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <div class="form-group">
                                     <label for="">Task Status</label>
                                     {{ form.status }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Task Status</label>
+                                    {{ form.admin_amount }}
                                 </div>
                                 <div class="form-group">
                                     <label for="task_name">Task file</label>

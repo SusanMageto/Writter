@@ -140,8 +140,15 @@
                                                  
                                                     <td>{{forloop.counter}}</td>
                                                     <td>{{u.username}}</td>
-                                                    <td>{{u.email}}</td>
-                                                    <td><span class="badge bg-success">Approved</span></td>
+                                                    <td> <a href="{% url 'approve' u.id %}"> {{u.email}}</a></td>
+                                                {% if u.is_verified == True %}
+                                                <td><span class="badge bg-success">Approved</span></td>
+                                                {% else %}
+                                                <td><span class="badge bg-danger">Pending</span></td>
+                                                {% endif %}
+                                                
+                                                
+                                                    
                                                     
                                                 </tr>
                                                 

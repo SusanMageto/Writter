@@ -9,7 +9,7 @@ from django.contrib.auth import authenticate, login,logout
 from django.http import HttpResponse
 
 from app.models import User, Task
-from .forms import LoginForm, RegisterForm, AddTasks,WritterForm
+from .forms import LoginForm, RegisterForm, AddTasks,WritterForm,AdminForm,ApproveForm
 from django.contrib import messages
 
 def index(request):
@@ -179,9 +179,11 @@ def writter(request):
 
 
     tasks = Task.objects.all()
+    user = User.objects.get(id=request.user.id)
 
     context = {
-        'tasks':tasks
+        'tasks':tasks,
+        'user':user
     }
 
     return render(request,'writter/writter.html',context)
@@ -213,13 +215,34 @@ def writter_view(request,id):
 
 
 def admin_view(request,id):
-    tasks = Task.objects.get(id=id)
-
     
 
+
+    tasks = Task.objects.get(id=id)
+    if request.method == 'POST':
+        form = AdminForm(request.POST,request.FILES)
+        if form.is_valid():
+            status = form.cleaned_data['status']
+            file = form.cleaned_data['file']
+            admin_amount = form.cleaned_data['admin_amount']
+
+            task = Task.objects.get(id=id)
+            task.status = status
+            task.file = file
+            task.admin_amount = admin_amount
+            task.save()
+            
+
+          
+            return redirect('adminpage')
+        else:
+            return HttpResponse('error')
     context = {
-        'tasks':tasks
-    }
+            
+            'tasks': tasks,
+            'form': AdminForm()
+        }
+
 
     return render(request,'admin/view.html',context)
 
@@ -233,6 +256,39 @@ def done_task(request):
     return render(request,'Client/done.html',context)
 
 # logout
+
+
+def approve(request,id):
+
+    user = User.objects.get(id=id)
+
+    if request.method == 'POST':
+        form = ApproveForm(request.POST)
+        if form.is_valid():
+            is_verified = form.cleaned_data['is_verified']
+            user.is_verified = is_verified
+            user.save()
+            
+            
+
+            
+            return redirect('all_writter')
+            
+        else:
+            return HttpResponse('error')
+
+    context = { 
+        'user': user,
+        'form': ApproveForm()
+    }
+
+    return render(request,'admin/approve.html',context)
+
+
+def delete_task(request,id):
+    task = Task.objects.get(id=id)
+    task.delete()
+    return redirect('all_task')
 
 def logout_request(request):
 	logout(request)

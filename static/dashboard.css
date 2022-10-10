@@ -27,14 +27,8 @@
   
   #wrapper {
     overflow-x: hidden;
-    background-image: linear-gradient(
-      to right,
-      #baf3d7,
-      #c2f5de,
-      #cbf7e4,
-      #d4f8ea,
-      #ddfaef
-    );
+    background:#43b0f1;
+  
   }
   
   #sidebar-wrapper {
@@ -103,11 +97,10 @@
   }
 
 
-  @import url(http://fonts.googleapis.com/css?family=Calibri:400,300,700);
+  @import url("https://api.fontshare.com/v2/css?f[]=satoshi@500,301,300,400&display=swap");
 
   body {
-      
-      font-family: 'Calibri', sans-serif !important
+    font-family: 'Satoshi', sans-serif;
   }
  
  .container{

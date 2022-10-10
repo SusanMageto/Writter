@@ -16,10 +16,12 @@ urlpatterns = [
     path('admin/all-client/', views.all_client, name='all_client'),
     path('admin/all-writter/', views.all_writter, name='all_writter'),
     path('admin/view/<int:id>', views.admin_view, name='admin_view'),
+    path('admin/approve/user/<int:id>',views.approve,name='approve'),
     path('client/', views.client, name='client'),
     
     path('client/addtask/', views.addtasks, name='addtasks'),
     path('client/all-task/', views.all_task, name='all_task'),
+    path('client/delete/<int:id>', views.delete_task, name='delete'),
     path('client/done/jobs/', views.done_task, name='done'),
     path('writter/submit/',views.client_task_update,name='update'),
     path('writter/', views.writter, name='writter'),

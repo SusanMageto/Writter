@@ -128,6 +128,7 @@
                                                     <th scope="col">Task Title</th>
                                                     <th scope="col">Task Status</th>
                                                     <th scope="col">Task File</th>
+                                                    <th scope="col">Action</th>
                                                   
                                                 </tr>
                                             </thead>
@@ -167,7 +168,7 @@
                                                     
                                                     {% endif %}
                                                     
-                                                   
+                                                   <td> <a class="btn btn-danger text-white" href="{% url 'delete' task.id %}">Delete </a></td>
                                                 </tr>
                                                 
 

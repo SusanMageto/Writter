@@ -68,7 +68,7 @@ class RegisterForm(UserCreationForm):
     
     class Meta:
         model = User
-        fields = ['username', 'password1', 'password2', 'email','is_admin','is_client','is_writter']
+        fields = ['username', 'password1', 'password2', 'email','is_admin','is_client','is_writter','is_verified']
 
 
 
@@ -137,7 +137,7 @@ class WritterForm(forms.Form):
             }
         )
     )
-       file = forms.FileField(
+       file = forms.FileField(required=False,
         widget=forms.FileInput(
             attrs={
                 'class': 'form-control',
@@ -149,4 +149,44 @@ class WritterForm(forms.Form):
        class Meta:
             model = Task
             fields = ['status', 'file']
+class AdminForm(forms.Form):
+         status = forms.ChoiceField(
+          choices=GEEKS_CHOICES,
+          widget=forms.Select(
+                attrs={
+                 'class': 'form-control',
+                 'placeholder':'status',
+                }
+          )
+     )
+         admin_amount = forms.IntegerField(
+            widget=forms.NumberInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder':'admin_amount',
+                }
+                )
+                 )
+         file = forms.FileField(required=False,
+          widget=forms.FileInput(
+                attrs={
+                 'class': 'form-control',
+                 'placeholder':'file',
+                }
+          )
+     )
     
+         class Meta:
+                model = Task
+                fields = ['status', 'file']
+
+
+class ApproveForm(forms.Form):
+    is_verified = forms.BooleanField(required=False,
+       
+    )
+   
+    
+    class Meta:
+        model = User
+        fields = ['is_verified']

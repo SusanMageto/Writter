@@ -100,7 +100,7 @@
                     <span>
                         <i class="fas text-dark fa-pen"></i>
                     </span>
-                    Writter<br> Register Page
+                    Writter<br> Login Page
 
                 </h2>
                <p>Login or register from here to access.</p>
@@ -113,9 +113,9 @@
                  <div class="card-body">
                     <span class="mb-0 text-muted">
                       {% if msg %}
-                        <p class="alert alert-danger">       {{ msg | safe }}</p>
+                          {{ msg | safe }}
                       {% else %}
-                          Register
+                          <h3 class="text-center fw-bold">Register</h3>
                       {% endif %}
                     </span>
                       <form  method="post">
